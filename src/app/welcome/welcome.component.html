@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<div class="main-page">
+    <mat-toolbar color="primary">
+        <img src="images/myflix-logo.png" alt="MyFlix Logo" class="toolbar-logo">
+        <span>myFlix</span>
+    </mat-toolbar>
+
+    <div class="welcome-container">
+        <mat-card class="welcome-card">
+            <div class="card-logo">
+                <img src="images/myflix-logo.svg" alt="MyFlix Logo" class="welcome-logo">
+            </div>
+            <mat-card-header class="center-header">
+                <mat-card-title>Welcome to myFlix!</mat-card-title>
+            </mat-card-header>
+
+            <mat-card-content>
+                <p>Discover and explore your favorite movies in our extensive database.</p>
+                <p>Sign up to create your personal movie collection and save your favorites!</p>
+            </mat-card-content>
+
+            <mat-card-actions class="welcome-actions">
+                <button mat-raised-button color="primary" (click)="openRegisterDialog()">
+                    Register
+                </button>
+                <button mat-raised-button color="accent" (click)="openLoginDialog()">
+                    Login
+                </button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>

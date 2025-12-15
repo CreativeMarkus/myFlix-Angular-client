@@ -3,17 +3,15 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
-//Declaring the api url that will provide data for the client app
-const apiUrl = 'YOUR_HOSTED_API_URL_HERE/';
+// API URL
+const apiUrl = 'https://movieapi1-40cbbcb4b0ea.herokuapp.com/';
 @Injectable({
   providedIn: 'root'
 })
-export class UserRegistrationService {
-  // Inject the HttpClient module to the constructor params
-  // This will provide HttpClient to the entire class, making it available via this.http
+export class FetchApiDataService {
   constructor(private http: HttpClient) {
   }
-  // Making the api call for the user registration endpoint
+  // User registration
   public userRegistration(userDetails: any): Observable<any> {
     console.log(userDetails);
     return this.http.post(apiUrl + 'users', userDetails).pipe(
@@ -21,7 +19,7 @@ export class UserRegistrationService {
     );
   }
 
-  // Making the api call for the user login endpoint
+  // User login
   public userLogin(userDetails: any): Observable<any> {
     console.log(userDetails);
     return this.http.post(apiUrl + 'login', userDetails).pipe(
@@ -29,7 +27,7 @@ export class UserRegistrationService {
     );
   }
 
-  // Making the api call for the get all movies endpoint
+  // Get all movies
   getAllMovies(): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http.get(apiUrl + 'movies', {
@@ -43,7 +41,7 @@ export class UserRegistrationService {
     );
   }
 
-  // Making the api call for the get one movie endpoint
+  // Get one movie
   getOneMovie(title: string): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http.get(apiUrl + 'movies/' + title, {
@@ -57,7 +55,7 @@ export class UserRegistrationService {
     );
   }
 
-  // Making the api call for the get one director endpoint
+  // Get director
   getOneDirector(directorName: string): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http.get(apiUrl + 'movies/directors/' + directorName, {
@@ -71,7 +69,7 @@ export class UserRegistrationService {
     );
   }
 
-  // Making the api call for the get one genre endpoint
+  // Get genre
   getOneGenre(genreName: string): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http.get(apiUrl + 'movies/genre/' + genreName, {
@@ -85,7 +83,7 @@ export class UserRegistrationService {
     );
   }
 
-  // Making the api call for the get one user endpoint
+  // Get user
   getOneUser(): Observable<any> {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     return this.http.get(apiUrl + 'users/' + user.Username, {
@@ -99,7 +97,7 @@ export class UserRegistrationService {
     );
   }
 
-  // Making the api call for the get favourite movies for a user endpoint
+  // Get favorite movies
   getFavouriteMovies(): Observable<any> {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     const token = localStorage.getItem('token');
@@ -115,7 +113,7 @@ export class UserRegistrationService {
     );
   }
 
-  // Making the api call for the add a movie to favourite Movies endpoint
+  // Add favorite movie
   addFavouriteMovie(movieId: string): Observable<any> {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     const token = localStorage.getItem('token');
@@ -130,7 +128,7 @@ export class UserRegistrationService {
     );
   }
 
-  // Making the api call for the edit user endpoint
+  // Edit user
   editUser(updatedUser: any): Observable<any> {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     const token = localStorage.getItem('token');
@@ -145,7 +143,7 @@ export class UserRegistrationService {
     );
   }
 
-  // Making the api call for the delete user endpoint
+  // Delete user
   deleteUser(): Observable<any> {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     const token = localStorage.getItem('token');
@@ -159,7 +157,7 @@ export class UserRegistrationService {
     );
   }
 
-  // Making the api call for the delete a movie from the favorite movies endpoint
+  // Delete favorite movie
   deleteFavouriteMovie(movieId: string): Observable<any> {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     const token = localStorage.getItem('token');
@@ -174,8 +172,8 @@ export class UserRegistrationService {
     );
   }
 
-  // Non-typed response extraction
-  private extractResponseData(res: Response): any {
+  // Extract response data
+  private extractResponseData(res: any): any {
     const body = res;
     return body || {};
   }

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<div class="movies-container">
+    @for (movie of movies; track movie._id) {
+    <mat-card class="movie-card">
+        <mat-card-header>
+            <mat-card-title>{{ movie.Title }}</mat-card-title>
+            <mat-card-subtitle>
+                <span class="director" (click)="onDirectorClick()">
+                    Directed by {{ movie.Director?.Name }}
+                </span>
+            </mat-card-subtitle>
+        </mat-card-header>
+
+        <img mat-card-image [src]="movie.ImagePath" [alt]="movie.Title" class="movie-image">
+
+        <mat-card-content>
+            <p class="description">{{ movie.Description }}</p>
+
+            <div class="genre-info">
+                <strong>Genre: </strong>
+                <span class="genre" (click)="onGenreClick()">
+                    {{ movie.Genre?.Name }}
+                </span>
+            </div>
+        </mat-card-content>
+
+        <mat-card-actions class="card-actions">
+            <button mat-button color="primary" (click)="onGenreClick()">
+                <mat-icon>info</mat-icon>
+                Genre
+            </button>
+            <button mat-button color="primary" (click)="onDirectorClick()">
+                <mat-icon>person</mat-icon>
+                Director
+            </button>
+            <button mat-button color="primary" (click)="onSynopsisClick()">
+                <mat-icon>description</mat-icon>
+                Synopsis
+            </button>
+            <button mat-icon-button color="accent" (click)="onFavoriteClick()" class="favorite-btn">
+                <mat-icon>favorite_border</mat-icon>
+            </button>
+        </mat-card-actions>
+    </mat-card>
+    }
+</div>

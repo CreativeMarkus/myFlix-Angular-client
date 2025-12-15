@@ -1,0 +1,26 @@
+<svg width="50" height="50" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- Circular background -->
+  <circle cx="50" cy="50" r="45" fill="#4DB6AC" stroke="none"/>
+  
+  <!-- Movie clapperboard -->
+  <g transform="translate(20, 15)">
+    <!-- Main body -->
+    <rect x="0" y="15" width="60" height="40" fill="#FF5722" rx="3"/>
+    
+    <!-- Top clapper -->
+    <path d="M0 15 L60 5 L60 15 Z" fill="#FF5722"/>
+    
+    <!-- Clapper stripes -->
+    <rect x="8" y="5" width="8" height="10" fill="#4DB6AC"/>
+    <rect x="20" y="7" width="8" height="8" fill="#4DB6AC"/>
+    <rect x="32" y="9" width="8" height="6" fill="#4DB6AC"/>
+    <rect x="44" y="11" width="8" height="4" fill="#4DB6AC"/>
+    
+    <!-- Play button -->
+    <polygon points="30,25 30,45 45,35" fill="#4DB6AC"/>
+    
+    <!-- Holes -->
+    <circle cx="5" cy="20" r="1.5" fill="#4DB6AC"/>
+    <circle cx="5" cy="25" r="1.5" fill="#4DB6AC"/>
+  </g>
+</svg>
