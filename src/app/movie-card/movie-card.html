@@ -1,0 +1,31 @@
+<div class="movies-container">
+    <h2 mat-dialog-title>All Movies</h2>
+
+    <div *ngIf="movies.length === 0" class="loading-message">
+        <p>Loading movies...</p>
+        <p>If this persists, check the console for API errors.</p>
+    </div>
+
+    <div class="movies-grid" *ngIf="movies.length > 0">
+        <mat-card *ngFor="let movie of movies; let i=index;" class="movie-card" (click)="showMovieDetails(movie)">
+            <mat-card-header>
+                <mat-card-title>{{movie.Title}}</mat-card-title>
+            </mat-card-header>
+            <img mat-card-image [src]="movie.ImagePath" [alt]="movie.Title + ' movie poster'" alt="Movie poster" />
+            <mat-card-content>
+                <p><strong>Director:</strong> {{movie.Director?.Name}}</p>
+                <p><strong>Genre:</strong> {{movie.Genre?.Name}}</p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button color="primary">Genre</button>
+                <button mat-button color="primary">Director</button>
+                <button mat-button color="primary">Synopsis</button>
+                <button mat-icon-button [color]="isFavorite(movie._id) ? 'warn' : 'primary'"
+                    (click)="toggleFavorite(movie); $event.stopPropagation()"
+                    [title]="isFavorite(movie._id) ? 'Remove from favorites' : 'Add to favorites'">
+                    <mat-icon>{{ isFavorite(movie._id) ? 'favorite' : 'favorite_border' }}</mat-icon>
+                </button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>

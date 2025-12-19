@@ -1,0 +1,101 @@
+<div class="user-profile-container">
+    <div class="profile-header">
+        <h1>User Profile</h1>
+        <div class="profile-actions">
+            <button mat-raised-button color="primary" (click)="toggleEditMode()">
+                {{ editMode ? 'Cancel' : 'Edit Profile' }}
+            </button>
+            <button mat-raised-button (click)="logout()">Logout</button>
+        </div>
+    </div>
+
+    <mat-card class="profile-card">
+        <mat-card-header>
+            <mat-card-title>Welcome, {{ user.Username }}!</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+            <div *ngIf="!editMode" class="profile-info">
+                <p><strong>Username:</strong> {{ user.Username }}</p>
+                <p><strong>Email:</strong> {{ user.Email }}</p>
+                <p><strong>Birthday:</strong> {{ user.Birthday | date:'mediumDate' }}</p>
+            </div>
+
+            <div *ngIf="editMode" class="profile-edit">
+                <mat-form-field class="full-width">
+                    <mat-label>Username</mat-label>
+                    <input matInput [(ngModel)]="updatedUser.Username" type="text">
+                </mat-form-field>
+
+                <mat-form-field class="full-width">
+                    <mat-label>Email</mat-label>
+                    <input matInput [(ngModel)]="updatedUser.Email" type="email">
+                </mat-form-field>
+
+                <mat-form-field class="full-width">
+                    <mat-label>Birthday</mat-label>
+                    <input matInput [(ngModel)]="updatedUser.Birthday" type="date">
+                </mat-form-field>
+
+                <mat-form-field class="full-width">
+                    <mat-label>New Password (optional)</mat-label>
+                    <input matInput [(ngModel)]="updatedUser.Password" type="password">
+                </mat-form-field>
+
+                <div class="edit-actions">
+                    <button mat-raised-button color="primary" (click)="updateProfile()">
+                        Save Changes
+                    </button>
+                    <button mat-button (click)="toggleEditMode()">Cancel</button>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card class="favorites-card">
+        <mat-card-header>
+            <mat-card-title>My Favorite Movies ({{ getFavoriteMovieDetails().length }})</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+            <div *ngIf="getFavoriteMovieDetails().length === 0" class="no-favorites">
+                <p>You haven't added any movies to your favorites yet.</p>
+                <button mat-raised-button color="primary" routerLink="/movies">Browse Movies</button>
+            </div>
+
+            <div class="favorites-grid" *ngIf="getFavoriteMovieDetails().length > 0">
+                <mat-card *ngFor="let movie of getFavoriteMovieDetails()" class="favorite-movie-card">
+                    <img mat-card-image [src]="movie.ImagePath" [alt]="movie.Title + ' movie poster'"
+                        alt="Movie poster" />
+                    <mat-card-header>
+                        <mat-card-title>{{ movie.Title }}</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <p><strong>Director:</strong> {{ movie.Director?.Name }}</p>
+                        <p><strong>Genre:</strong> {{ movie.Genre?.Name }}</p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <button mat-button color="warn" (click)="removeFromFavorites(movie._id)">
+                            <mat-icon>favorite</mat-icon>
+                            Remove from Favorites
+                        </button>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+        </mat-card-content>
+    </mat-card>
+
+    <div class="danger-zone">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title class="danger-title">Danger Zone</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <p>Once you delete your account, there is no going back. Please be certain.</p>
+                <button mat-raised-button color="warn" (click)="deleteAccount()">
+                    Delete Account
+                </button>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

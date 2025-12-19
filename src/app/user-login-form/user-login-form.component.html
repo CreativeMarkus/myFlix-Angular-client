@@ -3,19 +3,26 @@
         <mat-card-title>Login</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-        <form>
+        <form #loginForm="ngForm">
             <mat-form-field>
-                <input matInput [(ngModel)]="userData.Username" placeholder="Username" type="text" name="Username"
-                    required>
+                <input matInput [(ngModel)]="userData.Username" placeholder="Username or Email" type="text"
+                    name="Username" required #usernameInput="ngModel">
+                <mat-error *ngIf="usernameInput.invalid && usernameInput.touched">
+                    <span *ngIf="usernameInput.errors?.['required']">Username/Email is required</span>
+                </mat-error>
             </mat-form-field>
             <mat-form-field>
                 <input matInput [(ngModel)]="userData.Password" type="password" placeholder="Password" name="Password"
-                    required>
+                    required minlength="6" #passwordInput="ngModel">
+                <mat-error *ngIf="passwordInput.invalid && passwordInput.touched">
+                    <span *ngIf="passwordInput.errors?.['required']">Password is required</span>
+                    <span *ngIf="passwordInput.errors?.['minlength']">Password must be at least 6 characters long</span>
+                </mat-error>
             </mat-form-field>
         </form>
     </mat-card-content>
     <mat-card-actions>
-        <button mat-raised-button (click)="loginUser()" color="primary">
+        <button mat-raised-button (click)="loginUser()" color="primary" [disabled]="loginForm.invalid">
             Login
         </button>
     </mat-card-actions>

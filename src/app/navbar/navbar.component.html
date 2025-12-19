@@ -1,0 +1,27 @@
+<nav *ngIf="isLoggedIn()" class="navbar">
+    <div class="nav-content">
+        <div class="nav-brand">
+            <img src="myflix-logo.png" alt="myFlix Logo" class="nav-logo" />
+            <h2>myFlix</h2>
+        </div>
+
+        <div class="nav-links">
+            <button mat-button (click)="goToMovies()">
+                <mat-icon>movie</mat-icon>
+                Movies
+            </button>
+            <button mat-button (click)="goToProfile()">
+                <mat-icon>person</mat-icon>
+                My Profile
+            </button>
+        </div>
+
+        <div class="nav-user">
+            <span class="username">Welcome, {{ user?.Username }}!</span>
+            <button mat-button (click)="logout()">
+                <mat-icon>logout</mat-icon>
+                Logout
+            </button>
+        </div>
+    </div>
+</nav>

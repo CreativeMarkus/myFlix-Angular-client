@@ -1,26 +1,2 @@
-<div class="main-page">
-    <mat-card class="welcome-card">
-        <mat-card-header class="card-header">
-            <div class="logo-container">
-                <img src="myflix-logo.png" alt="myFlix Logo" class="logo" />
-            </div>
-        </mat-card-header>
-        <mat-card-content class="card-content">
-            <h1>Welcome to myFlix!</h1>
-            <p class="description">
-                Discover and explore your favorite movies in our extensive database.
-            </p>
-            <p class="signup-text">
-                Sign up to create your personal movie collection and save your favorites!
-            </p>
-        </mat-card-content>
-        <mat-card-actions class="card-actions">
-            <button mat-raised-button (click)="openUserRegistrationDialog()" color="primary" class="action-button">
-                Register
-            </button>
-            <button mat-raised-button (click)="openUserLoginDialog()" color="primary" class="action-button">
-                Login
-            </button>
-        </mat-card-actions>
-    </mat-card>
-</div>
+<app-navbar></app-navbar>
+<router-outlet></router-outlet>

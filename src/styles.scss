@@ -32,4 +32,49 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: #f8f9fa;
+}
+
+/* Custom Material Theme Colors */
+:root {
+  --primary-color: #66c6cc;
+  --primary-hover: #5ab3b9;
+  --accent-color: #ff6b6b;
+  --background-color: #f8f9fa;
+  --card-background: #ffffff;
+  --text-primary: #333333;
+  --text-secondary: #666666;
+  --border-color: rgba(0, 0, 0, 0.1);
+  --shadow-light: 0 2px 10px rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0 4px 20px rgba(0, 0, 0, 0.15);
+  --shadow-heavy: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* Enhanced Material Button Styles */
+.mat-mdc-raised-button.mat-primary {
+  background: #66c6cc !important;
+  color: white !important;
+  border-radius: 8px !important;
+  box-shadow: var(--shadow-light) !important;
+  transition: all 0.3s ease !important;
+}
+
+.mat-mdc-raised-button.mat-primary:hover {
+  background: #5ab3b9 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: var(--shadow-medium) !important;
+}
+
+/* Enhanced Card Styles */
+.mat-mdc-card {
+  background: var(--card-background) !important;
+  border-radius: 12px !important;
+  box-shadow: var(--shadow-light) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+/* Enhanced Dialog Styles */
+.mat-mdc-dialog-container {
+  border-radius: 16px !important;
+  overflow: hidden !important;
 }

@@ -36,8 +36,21 @@ export class UserRegistrationFormComponent implements OnInit {
       this.snackBar.open('User registration successful!', 'OK', {
         duration: 2000
       });
-    }, (result) => {
-      this.snackBar.open('User registration failed!', 'OK', {
+    }, (error) => {
+      console.log('Registration error:', error);
+      let errorMessage = 'User registration failed!';
+
+      if (error.error && typeof error.error === 'string') {
+        errorMessage = error.error;
+      } else if (error.error && error.error.message) {
+        errorMessage = error.error.message;
+      } else if (error.message) {
+        errorMessage = error.message;
+      } else if (error.status === 409) {
+        errorMessage = 'User already exists. Please try logging in instead.';
+      }
+
+      this.snackBar.open(errorMessage, 'OK', {
         duration: 2000
       });
     });
